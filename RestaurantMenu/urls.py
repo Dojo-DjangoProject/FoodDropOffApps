@@ -5,7 +5,7 @@ from . import views # import views file within the same folder (from .)
 urlpatterns = [
     path('restaurant_menu',views.index),
     # path('restaurant_menu/new', views.new),
-    # path('restaurant_menu/new/create',views.create),
+    path('restaurant_menu/new/create',views.create),
     # path('restaurant_menu/<int:show_id>', views.show_info),
     # path('restaurant_menu/<int:show_id>/edit', views.edit),
     # path('restaurant_menu/<int:show_id>/edit/update', views.update),
