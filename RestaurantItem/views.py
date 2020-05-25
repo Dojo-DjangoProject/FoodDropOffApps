@@ -8,3 +8,10 @@ def index(request):
         'items' : Item.objects.all()
     }
     return render(request,'items.html',context)
+
+def create(request):
+    Item.objects.create(
+        name=request.POST['name'],
+        price=request.POST['price']
+    )
+    return redirect('/restaurant_item')

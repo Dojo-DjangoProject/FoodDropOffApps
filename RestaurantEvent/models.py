@@ -9,6 +9,7 @@ class Event(models.Model):
     time = models.TimeField()
     spots_available = models.IntegerField()
 
+    restaurant = models.ManyToManyField(Restaurant,related_name="events")
     menu = models.ForeignKey(Menu,related_name="events_included",on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)

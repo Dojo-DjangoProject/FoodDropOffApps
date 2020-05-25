@@ -5,6 +5,7 @@ from RestaurantItem.models import Item
 class Menu(models.Model):
     name = models.CharField(max_length=100)
     # events_included 
+    restaurant = models.ManyToManyField(Restaurant,related_name="menus")
     items = models.ManyToManyField(Item,related_name="menu_included")
 
     created_at = models.DateTimeField(auto_now_add=True)

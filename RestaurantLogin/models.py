@@ -127,6 +127,9 @@ class Restaurant(models.Model):
     address = models.CharField(max_length=100)
     email_address = models.CharField(max_length=255)
     password = models.CharField(max_length = 255)
+    # events: All events assocated with this restaurant
+    # menus: All menus assocated with this restaurant
+    # items: All items assocated with this restaurant
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
