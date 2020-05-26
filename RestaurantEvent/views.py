@@ -18,3 +18,7 @@ def create(request):
         spots_available=request.POST['spots']
     )
     return redirect('/restaurant_event')
+
+#Route is /event/new
+def newEvent(request):
+    return render(request, "newEvent.html")
