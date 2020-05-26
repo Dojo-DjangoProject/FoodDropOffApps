@@ -1,5 +1,6 @@
 from django.db import models
 import re
+from Location.models import *
 # import bcrypt
 
 class RestaurantManager(models.Manager):
@@ -129,7 +130,7 @@ class Restaurant(models.Model):
 
     cuisine = models.CharField(max_length=50)
 
-    # location = models.ForeignKey(Location, related_name="location_restaurants", on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, related_name="location_restaurants", on_delete=models.CASCADE)
 
     phone_number = models.CharField(max_length=10)
     email_address = models.CharField(max_length=50)
