@@ -5,6 +5,8 @@ from . import views # import views file within the same folder (from .)
 urlpatterns = [
     path('',views.index),
     path('users',views.users),
+    path('users/register',views.register),
+    path('users/create',views.create),
     # path('user_login/new', views.new),
     # path('user_login/new/create',views.create),
     path('users/<int:user_id>', views.user_info),
