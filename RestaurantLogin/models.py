@@ -1,6 +1,6 @@
 from django.db import models
 import re
-import bcrypt
+# import bcrypt
 
 class RestaurantManager(models.Manager):
     def register_validator(self,postData):
@@ -99,13 +99,13 @@ class RestaurantManager(models.Manager):
         elif len(postData['owner']) > 30:
             errors['owner'] = longer_3
 
-        # Address Validations
-        if len(postData['address']) == 0:
-            errors['address'] = not_blank
-        elif len(postData['address']) < 2:
-            errors['address'] = fewer_2
-        elif len(postData['address']) > 100:
-            errors['address'] = longer_3
+        # # Address Validations
+        # if len(postData['address']) == 0:
+        #     errors['address'] = not_blank
+        # elif len(postData['address']) < 2:
+        #     errors['address'] = fewer_2
+        # elif len(postData['address']) > 100:
+        #     errors['address'] = longer_3
 
         # Email Validations
         EMAIL_REGEX = re.compile(r'^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$')
@@ -124,9 +124,16 @@ class RestaurantManager(models.Manager):
 class Restaurant(models.Model):
     name = models.CharField(max_length=30)
     owner = models.CharField(max_length=30)
-    address = models.CharField(max_length=100)
-    email_address = models.CharField(max_length=255)
-    password = models.CharField(max_length = 255)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+
+    cuisine = models.CharField(max_length=50)
+
+    # location = models.ForeignKey(Location, related_name="location_restaurants", on_delete=models.CASCADE)
+
+    phone_number = models.CharField(max_length=10)
+    email_address = models.CharField(max_length=50)
+    password = models.CharField(max_length = 70)
     # events: All events assocated with this restaurant
     # menus: All menus assocated with this restaurant
     # items: All items assocated with this restaurant
@@ -135,3 +142,14 @@ class Restaurant(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     objects = RestaurantManager()
+
+    # first_name = models.CharField(max_length=50)
+    # last_name = models.CharField(max_length=50)
+    # email = models.CharField(max_length=50)
+    # password = models.CharField(max_length=70)
+    # restaurant_name = models.CharField(max_length=255)
+    # cuisine = models.CharField(max_length=50)
+    # phone_number = models.CharField(max_length=10)
+    # location = models.ForeignKey(Location, related_name="location_restaurants", on_delete=models.CASCADE)
+    # created_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(auto_now=True)

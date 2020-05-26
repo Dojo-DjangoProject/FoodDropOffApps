@@ -1,4 +1,4 @@
-#!/Users/ben/Desktop/Dojo/FoodDropoff/py3Env/bin/python3
+#!/Users/ben/Desktop/Dojo/FoodDropOffApps/py3Env/bin/python3
 from django.core import management
 
 if __name__ == "__main__":

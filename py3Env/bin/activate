@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/ben/Desktop/Dojo/FoodDropoff/py3Env"
+VIRTUAL_ENV="/Users/ben/Desktop/Dojo/FoodDropOffApps/py3Env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

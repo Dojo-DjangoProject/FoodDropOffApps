@@ -2,8 +2,9 @@ from django.db import models
 from RestaurantLogin.models import Restaurant, RestaurantManager
 
 class Item(models.Model):
-    name = models.CharField(max_length=50)
-    price = models.IntegerField()
+    item_title = models.CharField(max_length=255)
+    item_description = models.TextField()
+    item_price = models.IntegerField()
     # menu_included
     restaurant = models.ManyToManyField(Restaurant,related_name="items")
 

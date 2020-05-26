@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/ben/Desktop/Dojo/FoodDropoff/py3Env"
+set -gx VIRTUAL_ENV "/Users/ben/Desktop/Dojo/FoodDropOffApps/py3Env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
