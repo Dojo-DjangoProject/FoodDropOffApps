@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'Location',
-    'Messages',
+    'Messaging',
     'RestaurantLogin',
     'RestaurantItem',
     'RestaurantMenu',
