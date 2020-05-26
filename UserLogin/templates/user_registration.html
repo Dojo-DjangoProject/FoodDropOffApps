@@ -32,7 +32,7 @@
         <div class="row justify-content-center">
             <div class="col-6 text-center">
                 <p>Create an account to start using Food Dropoff today!</p>
-                <form class="ajaxform-reg" action="/register" method="POST">
+                <form class="ajaxform-reg" action="/users/create" method="POST">
                     {% csrf_token %}
                     <div class="form-group row">
                         <label for="first_name" class="col-sm-4 col-form-label">First Name</label>
