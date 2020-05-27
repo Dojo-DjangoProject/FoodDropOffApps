@@ -7,6 +7,8 @@ urlpatterns = [
     path('restaurant_event',views.index),
     path('new/', views.newEvent),
     path('new/create',views.createEvent),
+    path('<int:eventID>/edit', views.editEvent),
+    path('<int:eventID>/update', views.updateEvent)
     # path('restaurant_event/<int:show_id>', views.show_info),
     # path('restaurant_event/<int:show_id>/edit', views.edit),
     # path('restaurant_event/<int:show_id>/edit/update', views.update),

@@ -5,11 +5,6 @@ import bcrypt
 
 def index(request):
     return HttpResponse('Works')
-<<<<<<< HEAD
-    
-def user_info(request,user_id):
-    return render(request,'user_welcome.html')
-=======
 
 def register(request):
     return render(request,'user_registration.html')
@@ -45,4 +40,3 @@ def user_info(request,user_id):
         'events' : Event.objects.all()
     }
     return render(request,'user_welcome.html',context)
->>>>>>> 99ec5774cbaff5f9d8ed7e3abd64d640c985ffc4

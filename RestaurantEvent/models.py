@@ -2,6 +2,7 @@ from django.db import models
 from Location.models import Location
 from RestaurantLogin.models import Restaurant, RestaurantManager
 from RestaurantMenu.models import Menu
+import datetime
 import re
 
 class EventManager(models.Manager):
@@ -35,8 +36,12 @@ class EventManager(models.Manager):
         #Date Time Field
         if not "date" in postData:
             errors["date"] = "Please specify a date"
-        elif len(postData["date"]) < 1:
-            errors["date"] = "Please specify a date"
+        else:
+            if len(postData["date"]) < 1:
+                errors["date"] = "Please specify a date"
+            #Make sure date is in the future
+            elif datetime.datetime.strptime(postData["date"], "%Y-%m-%dT%H:%M") < datetime.datetime.now():
+                errors["date"] = "Event must be in the future"
         #Minimum orders
         if not "min_orders" in postData:
             errors["min_orders"] = "Please specify a minimum number of orders"

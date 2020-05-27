@@ -3,111 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Dropoff</title>
+    <title>Create a New Event</title>
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% include "navbar.html" %}
     <div class="container">
-        <div class="header">
-            <div class="row justify-content-between">
-                <div class="col">
-                    Logo
-                </div>
-                <div class="col">
-                    <h1>Restaurant Name</h1>
-                </div>
-                <div class="col text-right">
-                    <a href="">Account</a>
-                    <a href="">Logout</a>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col">
                 <div class="row justify-content-center">
-                    Edit Event
+                    <h1>Edit Event</h1>
                 </div>
-                <form action="" method="POST">
+                <form action="/event/{{event.id}}/update" method="POST">
                     {% csrf_token %}
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "date" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="Date">Date</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
-                            <input type="datetime-local" name="date">
+                            <input type="datetime-local" name="date" value="{{date}}">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "address" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="address">Address</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
-                            <input type="text" name="address">
+                            <input type="text" name="address" value="{{event.location.address}}">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "city" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="city">City</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
-                            <input type="text" name="city">
+                            <input type="text" name="city" value="{{event.location.city}}">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "state" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="state">State</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
-                            <input type="text" name="state">
+                            <input type="text" name="state" value="{{event.location.state}}">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "zip_code" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="zip_code">Zip Code</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
-                            <input type="text" name="zip_code">
+                            <input type="text" name="zip_code" value="{{event.location.zip_code}}">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "min_orders" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="min_orders">Minimum Orders</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
-                            <input type="number" min="0" name="min_orders" value="0">
-                            
+                            <input type="number" min="0" name="min_orders" value="{{event.minimum_orders}}">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row my-2 justify-content-center">
                         <span class="small">*Sets the minimum number of orders needed to hold the event (customer cannot see this)</span>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "min_per_order" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="min_per_order">Minimum Order Amount</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
-                            <input type="number" min="0" name="min_per_order" value="0">
+                            <input type="number" min="0" name="min_per_order" value="{{event.minimum_amount_per_order}}">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <input type="number" value="10000" hidden name="max_orders">
+                    <div class="row my-2 justify-content-center">
                         <span class="small">*Sets the minimum order price that the customer needs to meet</span>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="notes">Notes</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
-                            <textarea name="notes" id="" cols="30" rows="10"></textarea>
+                            <textarea name="notes" id="" cols="30" rows="10">{{event.notes}}</textarea>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row my-2 justify-content-center">
                         <div class="col-2">
-                            <a href="" class="btn btn-danger">Cancel Event</a>
+                            <a href="" class="btn btn-danger">Cancel</a>
                         </div>
                         <div class="col-2">
-                            <button type="submit" class="btn btn-primary">Edit Event</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
                         </div>
                     </div>
                 </form>
