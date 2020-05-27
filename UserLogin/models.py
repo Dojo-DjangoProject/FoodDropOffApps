@@ -56,15 +56,18 @@ class UserManager(models.Manager):
     def login_validator(self,postData):
         errors = {}
         user_pass = 'Email/Password is incorrect or User does not exist'
-        try:
-            user = User.objects.filter(email=postData['logemail'])[0]
-            print('there is a user')
-            print(bcrypt.checkpw(postData['logpassword'].encode(), user[0].password.encode()))
-            if not bcrypt.checkpw(postData['logpassword'].encode(), user[0].password.encode()):
-                print('wrong password')
-                errors['login'] = 'password'#user_pass
-        except:
-            pass
+        # try:
+        user = User.objects.filter(email='jwalker@gmail.com')
+        userp = user[0]
+        print('there is a user')
+        print(bcrypt.checkpw(postData['logpassword'].encode(), userp.password.encode()))
+        print('after bcrypt')
+        if not bcrypt.checkpw(postData['logpassword'].encode(), userp.password.encode()):
+            print('wrong password')
+            errors['login'] = 'password'#user_pass
+        # except:
+        #     print('no user')
+        #     return errors
             # errors['login'] = 'user'#user_pass
 
         return errors
