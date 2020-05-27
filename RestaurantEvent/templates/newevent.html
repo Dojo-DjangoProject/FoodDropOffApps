@@ -3,35 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Dropoff</title>
+    <title>Create a New Event</title>
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% include "navbar.html" %}
     <div class="container">
-        <div class="header">
-            <div class="row justify-content-between">
-                <div class="col">
-                    Logo
-                </div>
-                <div class="col">
-                    <h1>Restaurant Name</h1>
-                </div>
-                <div class="col text-right">
-                    <a href="">Account</a>
-                    <a href="">Logout</a>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col">
                 <div class="row justify-content-center">
-                    Create Event
+                    <h1>Create A New Event</h1>
                 </div>
-                <form action="" method="POST">
+                <form action="/event/new/create" method="POST">
                     {% csrf_token %}
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "date" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="Date">Date</label>
                         </div>
@@ -39,7 +33,14 @@
                             <input type="datetime-local" name="date">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "address" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="address">Address</label>
                         </div>
@@ -47,7 +48,14 @@
                             <input type="text" name="address">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "city" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="city">City</label>
                         </div>
@@ -55,7 +63,14 @@
                             <input type="text" name="city">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "state" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="state">State</label>
                         </div>
@@ -63,7 +78,14 @@
                             <input type="text" name="state">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "zip_code" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="zip_code">Zip Code</label>
                         </div>
@@ -71,19 +93,32 @@
                             <input type="text" name="zip_code">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "min_orders" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="min_orders">Minimum Orders</label>
                         </div>
                         <div class="col-sm-5 col-md-3 col-lg-3">
                             <input type="number" min="0" name="min_orders" value="0">
-                            
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row my-2 justify-content-center">
                         <span class="small">*Sets the minimum number of orders needed to hold the event (customer cannot see this)</span>
                     </div>
-                    <div class="row justify-content-center">
+                    {% for message in messages %}
+                        {% if message.extra_tags == "min_per_order" %}
+                        <div class="row alert-danger">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="min_per_order">Minimum Order Amount</label>
                         </div>
@@ -91,10 +126,11 @@
                             <input type="number" min="0" name="min_per_order" value="0">
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <input type="number" value="10000" hidden name="max_orders">
+                    <div class="row my-2 justify-content-center">
                         <span class="small">*Sets the minimum order price that the customer needs to meet</span>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row my-2 justify-content-center">
                         <div class="col-sm-4 col-md-3 col-lg-3">
                             <label for="notes">Notes</label>
                         </div>
@@ -102,9 +138,9 @@
                             <textarea name="notes" id="" cols="30" rows="10"></textarea>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row my-2 justify-content-center">
                         <div class="col-2">
-                            <a href="" class="btn btn-primary">Create Event</a>
+                            <button type="submit" class="btn btn-primary">Create Event</button>
                         </div>
                     </div>
                 </form>
