@@ -15,12 +15,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="{% static 'js/script.js' %}"></script>
 
-<<<<<<< HEAD
-=======
     <div class="navbar">
         {% include "navbar.html" %}
     </div>
->>>>>>> 99ec5774cbaff5f9d8ed7e3abd64d640c985ffc4
 
     <div class="container">
         <div class="col-sm-8">
@@ -32,15 +29,9 @@
                 </tr>
                 {% for event in events %}
                 <tr>
-<<<<<<< HEAD
-                    <td><a href="">{{retaurant.name}}</a></td>
-                    <td>{{restaurant.cuisine}}</td>
-                    <td><a href="">{{restaurant.next_event}}</a></td>
-=======
                     <td><a href="">{{event.restaurant_id.name}}</a></td>
                     <td>{{event.restaurant_id.cuisine}}</td>
                     <td><a href="">{{event.date_time}}</a></td>
->>>>>>> 99ec5774cbaff5f9d8ed7e3abd64d640c985ffc4
                 </tr>
                 {% endfor %}
             </table>
