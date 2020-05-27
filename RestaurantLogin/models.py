@@ -1,4 +1,5 @@
 from django.db import models
+from Location.models import Location
 import re
 # import bcrypt
 
@@ -10,29 +11,29 @@ class RestaurantManager(models.Manager):
         longer_3 = "This field cannot be longer than 30 characters in length."
         invalid_email = "Invalid email address."
         
-        # Name Validations
-        if len(postData['name']) == 0:
-            errors['name'] = not_blank
-        elif len(postData['name']) < 2:
-            errors['name'] = fewer_2
-        elif len(postData['name']) > 30:
-            errors['name'] = longer_3
+        # # Name Validations
+        # if len(postData['name']) == 0:
+        #     errors['name'] = not_blank
+        # elif len(postData['name']) < 2:
+        #     errors['name'] = fewer_2
+        # elif len(postData['name']) > 30:
+        #     errors['name'] = longer_3
 
-        # Owner Name Validations
-        if len(postData['owner']) == 0:
-            errors['owner'] = not_blank
-        elif len(postData['owner']) < 2:
-            errors['owner'] = fewer_2
-        elif len(postData['owner']) > 30:
-            errors['owner'] = longer_3
+        # # Owner Name Validations
+        # if len(postData['owner']) == 0:
+        #     errors['owner'] = not_blank
+        # elif len(postData['owner']) < 2:
+        #     errors['owner'] = fewer_2
+        # elif len(postData['owner']) > 30:
+        #     errors['owner'] = longer_3
 
-        # Address Validations
-        if len(postData['address']) == 0:
-            errors['address'] = not_blank
-        elif len(postData['address']) < 2:
-            errors['address'] = fewer_2
-        elif len(postData['address']) > 100:
-            errors['address'] = longer_3
+        # # Address Validations
+        # if len(postData['address']) == 0:
+        #     errors['address'] = not_blank
+        # elif len(postData['address']) < 2:
+        #     errors['address'] = fewer_2
+        # elif len(postData['address']) > 100:
+        #     errors['address'] = longer_3
 
 
         # Include Birthday Validations
@@ -83,21 +84,21 @@ class RestaurantManager(models.Manager):
         longer_3 = "This field cannot be longer than 30 characters in length."
         invalid_email = "Invalid email address."
         
-        # First Name Validations
-        if len(postData['name']) == 0:
-            errors['name'] = not_blank
-        elif len(postData['name']) < 2:
-            errors['name'] = fewer_2
-        elif len(postData['name']) > 30:
-            errors['name'] = longer_3
+        # # First Name Validations
+        # if len(postData['name']) == 0:
+        #     errors['name'] = not_blank
+        # elif len(postData['name']) < 2:
+        #     errors['name'] = fewer_2
+        # elif len(postData['name']) > 30:
+        #     errors['name'] = longer_3
 
-        # Owner Name Validations
-        if len(postData['owner']) == 0:
-            errors['owner'] = not_blank
-        elif len(postData['owner']) < 2:
-            errors['owner'] = fewer_2
-        elif len(postData['owner']) > 30:
-            errors['owner'] = longer_3
+        # # Owner Name Validations
+        # if len(postData['owner']) == 0:
+        #     errors['owner'] = not_blank
+        # elif len(postData['owner']) < 2:
+        #     errors['owner'] = fewer_2
+        # elif len(postData['owner']) > 30:
+        #     errors['owner'] = longer_3
 
         # # Address Validations
         # if len(postData['address']) == 0:
@@ -122,14 +123,13 @@ class RestaurantManager(models.Manager):
         return errors
 
 class Restaurant(models.Model):
-    name = models.CharField(max_length=30)
-    owner = models.CharField(max_length=30)
+    restaurant_name = models.CharField(max_length=30)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
 
     cuisine = models.CharField(max_length=50)
 
-    # location = models.ForeignKey(Location, related_name="location_restaurants", on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, related_name="restaurants", on_delete=models.CASCADE)
 
     phone_number = models.CharField(max_length=10)
     email_address = models.CharField(max_length=50)
@@ -142,14 +142,3 @@ class Restaurant(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     objects = RestaurantManager()
-
-    # first_name = models.CharField(max_length=50)
-    # last_name = models.CharField(max_length=50)
-    # email = models.CharField(max_length=50)
-    # password = models.CharField(max_length=70)
-    # restaurant_name = models.CharField(max_length=255)
-    # cuisine = models.CharField(max_length=50)
-    # phone_number = models.CharField(max_length=10)
-    # location = models.ForeignKey(Location, related_name="location_restaurants", on_delete=models.CASCADE)
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
