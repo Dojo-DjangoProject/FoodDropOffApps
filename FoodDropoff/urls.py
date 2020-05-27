@@ -25,5 +25,5 @@ urlpatterns = [
     path('', include('RestaurantMenu.urls')),
     path('event/', include('RestaurantEvent.urls')),
     path('', include('UserLogin.urls')),
-    path('', include('UserOrder.urls')),
+    path('user/order/', include('UserOrder.urls')),
 ]
