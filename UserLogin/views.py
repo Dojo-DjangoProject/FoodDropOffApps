@@ -4,7 +4,8 @@ from .models import User
 import bcrypt
 
 def index(request):
-    return HttpResponse('Works')
+    # render homepage
+    return render(request,'index.html')
 
 def register(request):
     return render(request,'user_registration.html')
