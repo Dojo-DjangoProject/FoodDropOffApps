@@ -42,6 +42,7 @@ def createEvent(request):
                 location= location,
                 date_time = request.POST['date'],
                 notes = request.POST["notes"],
+                status = "In Progress",
                 minimum_orders = request.POST["min_orders"],
                 maximum_orders = 10000, #value is currently a placeholder to say lots of orders
                 minimum_amount_per_order = request.POST["min_per_order"]
