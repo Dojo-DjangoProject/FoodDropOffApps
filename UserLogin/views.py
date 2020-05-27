@@ -38,13 +38,13 @@ def create(request):
 def login(request):
     errors = User.objects.login_validator(request.POST)
     print(errors)
-    # if len(errors) > 0:
-    #     print('errors')
-    #     for key, value in errors.items():
-    #         messages.error(request,value,extra_tags=key)
-    #     return redirect('/users/login')
-    # else:
-    #     print('no errors')
+    if len(errors) > 0:
+        print('errors')
+        for key, value in errors.items():
+            messages.error(request,value,extra_tags=key)
+        return redirect('/users')
+    else:
+        print('no errors')
     #     pass
 
         # user = User.objects.filter(email=request.POST['logemail'])
