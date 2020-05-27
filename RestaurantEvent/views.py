@@ -95,3 +95,19 @@ def updateEvent(request, eventID):
         return redirect(f"/event/{eventID}/edit")
     else:
         return redirect("/")
+
+#Route is /event/<int:eventID>
+def viewEvent(request, eventID):
+    event = Event.objects.get(id=eventID)
+    context = {
+        "event": event,
+        "orders": event.orders.all()
+    }
+    return render(request, "viewEvent.html", context)
+
+#Route is /event/<int:eventID>/complete
+def completeEvent(request, eventID):
+    event = Event.objects.get(id=eventID)
+    event.status = "Completed"
+    event.save()
+    return redirect(f"/event/{event.id}")
