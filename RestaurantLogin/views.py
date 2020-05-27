@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 from django.contrib import messages
 from django.http import JsonResponse
+from RestaurantEvent.models import Event
 
 def index(request):
     # render login form
@@ -55,7 +56,7 @@ def login(request):
 def create(request):
     # process POST request to create new restaurant account
     if 'restaurantID' in request.session:
-        restaurant = Restaurant.object.filter(id=request.session['restaurantID'])
+        restaurant = Restaurant.objects.filter(id=request.session['restaurantID'])
         if restaurant:
             return redirect('/restaurantlogin/welcome')
         else:
@@ -93,7 +94,20 @@ def create(request):
 
 def welcome(request):
     # render welcome page
-    return render(request,'restaurant-welcome.html')
+    if 'restaurantID' in request.session:
+        restaurant = Restaurant.objects.filter(id=request.session['restaurantID'])
+        if restaurant:
+            restaurant = Restaurant.objects.get(id=request.session['restaurantID'])
+            context = {
+                'one_restaurant': restaurant,
+            }
+            return render(request,'restaurant-welcome.html',context)
+        else:
+            request.session.flush()
+            return redirect('/')
+    elif 'userID' in request.session:
+        return redirect('/userlogin')
+    return redirect('/')
 
 def testunique(request):
     # check email uniqueness and return result to ajax
