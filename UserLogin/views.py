@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from RestaurantEvent.models import Event
 from .models import User
 import bcrypt
 
@@ -35,4 +36,7 @@ def users(request):
     return render(request,'user_login.html')
     
 def user_info(request,user_id):
-    return render(request,'user_welcome.html')
+    context = {
+        'events' : Event.objects.all()
+    }
+    return render(request,'user_welcome.html',context)

@@ -29,9 +29,9 @@
                 </tr>
                 {% for event in events %}
                 <tr>
-                    <td><a href="">{{retaurant.name}}</a></td>
-                    <td>{{restaurant.cuisine}}</td>
-                    <td><a href="">{{restaurant.next_event}}</a></td>
+                    <td><a href="">{{event.restaurant_id.name}}</a></td>
+                    <td>{{event.restaurant_id.cuisine}}</td>
+                    <td><a href="">{{event.date_time}}</a></td>
                 </tr>
                 {% endfor %}
             </table>
