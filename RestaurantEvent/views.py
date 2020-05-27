@@ -42,6 +42,7 @@ def createEvent(request):
                 location= location,
                 date_time = request.POST['date'],
                 notes = request.POST["notes"],
+                status = "In Progress",
                 minimum_orders = request.POST["min_orders"],
                 maximum_orders = 10000, #value is currently a placeholder to say lots of orders
                 minimum_amount_per_order = request.POST["min_per_order"]
@@ -95,3 +96,19 @@ def updateEvent(request, eventID):
         return redirect(f"/event/{eventID}/edit")
     else:
         return redirect("/")
+
+#Route is /event/<int:eventID>
+def viewEvent(request, eventID):
+    event = Event.objects.get(id=eventID)
+    context = {
+        "event": event,
+        "orders": event.orders.all()
+    }
+    return render(request, "viewEvent.html", context)
+
+#Route is /event/<int:eventID>/complete
+def completeEvent(request, eventID):
+    event = Event.objects.get(id=eventID)
+    event.status = "Completed"
+    event.save()
+    return redirect(f"/event/{event.id}")

@@ -62,7 +62,7 @@ class EventManager(models.Manager):
 class Event(models.Model):
     restaurant =  models.ForeignKey(Restaurant, related_name="events", on_delete=models.CASCADE)
     menu = models.ForeignKey(Menu,related_name="events",on_delete=models.CASCADE)
-    
+    status = models.CharField(max_length=30)
     date_time = models.DateTimeField()
     notes = models.TextField()
     location = models.ForeignKey(Location, related_name="events", on_delete=models.CASCADE)
