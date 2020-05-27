@@ -93,7 +93,7 @@ def create(request):
 
 def welcome(request):
     # render welcome page
-    pass
+    return render(request,'restaurant-welcome.html')
 
 def testunique(request):
     # check email uniqueness and return result to ajax
