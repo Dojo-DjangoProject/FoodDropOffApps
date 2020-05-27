@@ -42,7 +42,7 @@
                     {% endfor %}
                     <span class="col-sm-8 loginfail"></span>
                 </div>
-                <form class="ajaxform-login" action="/login" method="POST">
+                <form class="ajaxform-login" action="/users/login" method="POST">
                     {% csrf_token %}
                     <div class="form-group row">
                         <label for="logemail" class="col-sm-4 col-form-label">Email</label>
